@@ -1,0 +1,1 @@
+The meal planner is a command line tool that allows a user to calculate how many calories they can eat per day to maintain their weight, gain weight, or lose weight. This tool also allows users to generate meal plans based on the calories they enter. 
