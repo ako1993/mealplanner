@@ -16,5 +16,5 @@ def generate_TDEE(weight:int, height:int, age:int, gender:str, activity_level: i
         case 5:
             activity_factor = 1.9
     TDEE = BMR * activity_factor
-    print("Your TDEE is " + TDEE)
+    print("Your TDEE is ", TDEE)
     return TDEE
