@@ -38,15 +38,12 @@ def meet_requirement(food:Food, allowance:int)->int:
 
 
 def choose_random_macro(macro_type:Food_type, foods:list[Food])->Food:
-    num = random.randint(0, len(foods)-1)
-    current_food = foods[num]
-    while current_food.food_type != macro_type:
-        if current_food.food_type != macro_type:
-            continue
-        else:
-            break
-    print(f"The chosen food is {current_food.name} because it is a {current_food.food_type}")
-    return current_food
+    matching_foods = [food for food in foods if getattr(food, "food_type", None)== macro_type]
+    if not matching_foods:
+        raise ValueError(f"No food items found of {macro_type}") 
+    choice = random.choice(matching_foods)
+    print(f"The chosen food is {choice.name} because it is a {choice.food_type}")
+    return choice
     
     
     
