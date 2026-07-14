@@ -2,13 +2,6 @@ from food import *
 import random
 
 def generate_meals(calorie_allowance:int):
-    protein_requirement = calorie_allowance * 0.33
-    carb_requirement = calorie_allowance * 0.33
-    fat_requirement = calorie_allowance * 0.10
-    macro_total = protein_requirement + carb_requirement + fat_requirement
-    micro_requirement = calorie_allowance = macro_total
-
-
     chicken = Food.getChicken()
     brown_rice = Food.getBrownRice()
     avacado = Food.getAvacado()
@@ -21,20 +14,53 @@ def generate_meals(calorie_allowance:int):
     food_options = [chicken, brown_rice, avacado, brocolli, beef, sweet_potato, peanut_butter, asparagus]
 
     calories_per_meal = calorie_allowance/3
+    
 
-    meal_1 = []
-    meal_2 = []
-    meal_3 = []
+    
+
+def generate_single_meal(calories_per_meal:int, food_options:list[Food]):
+    meal = {}
+    protein_choice = choose_random_macro(Food_type.PROTEIN, food_options)
+    carb_choice = choose_random_macro(Food_type.CARB, food_options)
+    fat_choice = choose_random_macro(Food_type.FAT, food_options)
+    micro_choice = choose_random_macro(Food_type.MICRONUTRIENT, food_options)
+
+    protein_per_meal = calories_per_meal * 0.33
+    carbs_per_meal = calories_per_meal * 0.33
+    fat_per_meal = calories_per_meal * 0.10
+    total_macros = protein_per_meal + carbs_per_meal + fat_per_meal
+    micros_per_meal = calories_per_meal - total_macros
+
+    protein_servings = meet_requirement(protein_choice, protein_per_meal)
+    carb_servings = meet_requirement(carb_choice, carbs_per_meal)
+    fat_servings = meet_requirement(fat_choice, fat_per_meal)
+    micro_servings = meet_requirement(micro_choice, micros_per_meal)
+
+    p_cal, p_pro, p_carb, p_fat = generate_nutrition_facts(protein_choice, protein_servings)
+    c_cal, c_pro, c_carb, c_fat = generate_nutrition_facts(carb_choice, carb_servings)
+    f_cal, f_pro, f_carb, f_fat = generate_nutrition_facts(fat_choice, fat_servings)
+    m_cal, m_pro, m_carb, m_fat = generate_nutrition_facts(micro_choice, micro_servings)
+
+    total_calories = p_cal + c_cal + f_cal + m_cal
+    total_protein = p_pro + c_pro + f_pro + m_pro
+    total_carbs = p_carb + c_carb + f_carb + m_carb
+    total_fat = p_fat + c_fat + f_fat + m_fat
+    return total_calories, total_protein, total_carbs, total_fat
+
+
+
+
+    
+
+
+
+    
 
 
 def meet_requirement(food:Food, allowance:int)->int:
-    calories_from_food = 0
-    servings = 0
-    while(calories_from_food < allowance):
-        calories_from_food += food.calories
-        servings += 1
-    print(f"You can have {servings} servings of {food.name} for {calories_from_food} calories")
-    return servings, calories_from_food
+    servings = round(allowance/food.calories, 2)
+    print(f"You can have {round(servings,2)} servings of {food.name} for {round(food.calories * servings, 2)} calories")
+    return servings
 
 
 def choose_random_macro(macro_type:Food_type, foods:list[Food])->Food:
@@ -46,6 +72,12 @@ def choose_random_macro(macro_type:Food_type, foods:list[Food])->Food:
     return choice
     
     
-    
-    
+def generate_nutrition_facts(food:Food, servings:int)->int:
+    total_calories = food.calories * servings
+    total_protein = food.protein * servings
+    total_carbs = food.carbs * servings
+    total_fat = food.fat * servings
+    print(f"{food.name} - {servings} servings - {round(food.serving_size * servings,2)} grams - {round(total_calories,2)} total calories, {round(total_protein, 2)} grams protein, {round(total_carbs,2)} grams carbs, {round(total_fat, 2)} grams fat")
+    return total_calories, total_protein, total_carbs, total_fat
+ 
     
