@@ -48,3 +48,16 @@ class Food():
          asparagus = Food("asparagus", 84, 15, 2, 3, 0, Food_type.MICRONUTRIENT)
          return asparagus
 
+    def getSalmon():
+         salmon = Food("salmon", 112, 240, 23, 0, 15, Food_type.PROTEIN)
+         return salmon
+    
+    def getBakedPotato():
+         baked_potato = Food("baked potato", 148, 110, 3, 26, 0, Food_type.CARB)
+         return baked_potato
+    
+
+    
+
+    
+

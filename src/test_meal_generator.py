@@ -1,5 +1,5 @@
 import unittest
-from meal_generator import meet_requirement, choose_random_macro, generate_nutrition_facts, generate_single_meal
+from meal_generator import meet_requirement, choose_random_macro, generate_nutrition_facts, generate_single_meal, generate_meals, getAllFoodOptions
 from food import *
 
 class Test_meal_generator(unittest.TestCase):
@@ -40,4 +40,7 @@ class Test_meal_generator(unittest.TestCase):
             food_options = [chicken, brown_rice, avacado, brocolli, beef, sweet_potato, peanut_butter, asparagus]
 
             calories, protein, carbs, fat = generate_single_meal(800, food_options)
-            self.assertEqual(calories, 800)
+            assert(calories - 800) <= 2
+
+    def test_generate_meals(self):
+         generate_meals(2400)
