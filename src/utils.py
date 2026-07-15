@@ -1,3 +1,6 @@
+from meal_generator import generate_meals
+
+
 def generate_menu():
     print('''Please select one of the following options:
           
@@ -61,3 +64,23 @@ def get_user_info():
             print(f"Input error! {v}")
     return user_weight, user_height, user_age, user_gender, activity_level
     
+def finalize_plan(TDEE:float):
+    user_selection = input("To finalize select 1\nto generate a new plan to gain weight select 2\nto generate a new plan to lose weight select 3\nto generate a new plan based on your TDEE select 4\n")
+    match user_selection:
+        case "1":
+            return
+        case "2":
+            TDEE = TDEE + TDEE * 0.1
+            generate_meals(TDEE)
+            finalize_plan(TDEE)
+        case "3":
+            TDEE = TDEE - TDEE * 0.1
+            generate_meals(TDEE)
+            finalize_plan(TDEE)
+        case "4":
+            generate_meals(TDEE)
+            finalize_plan(TDEE)
+        case _:
+            print("Please select a valid option")
+            finalize_plan(TDEE)
+

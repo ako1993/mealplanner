@@ -1,5 +1,6 @@
-from utils import generate_menu, get_user_info, generate_user_prompt
+from utils import generate_menu, get_user_info, generate_user_prompt, finalize_plan
 from TDEE import generate_TDEE
+from meal_generator import generate_meals
 import sys
 
 print("Welcome to the meal planner!")
@@ -10,7 +11,8 @@ if user_selection == 1:
     user_TDEE = generate_TDEE(weight, height, age, gender, activity_level)
     user_choice = generate_user_prompt(user_TDEE)
     if user_choice == 1:
-        print("Generating meal plan....")
+        generate_meals(user_TDEE)
+        finalize_plan(user_TDEE)
     else:
         sys.exit(0)
         

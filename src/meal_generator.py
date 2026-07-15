@@ -21,7 +21,7 @@ def generate_meals(calorie_allowance:int):
         total_carbs += carbs
         total_fat += fat
     print("--------------------------------------------------\n")
-    print(f"Total calories: {total_calories} calories")
+    print(f"Total calories: {round(total_calories, 2)} calories")
     print(f"Total protein: {round(total_protein, 2)} grams")
     print(f"Total carbs: {round(total_carbs, 2)} grams")
     print(f"Total fat: {round(total_fat, 2)} grams")
@@ -50,8 +50,8 @@ def generate_single_meal(calories_per_meal:int, food_options:list[Food]):
     micro_choice = choose_random_macro(Food_type.MICRONUTRIENT, food_options)
 
     protein_per_meal = calories_per_meal * 0.33
-    carbs_per_meal = calories_per_meal * 0.33
-    fat_per_meal = calories_per_meal * 0.10
+    carbs_per_meal = calories_per_meal * 0.30
+    fat_per_meal = calories_per_meal * 0.30
     total_macros = protein_per_meal + carbs_per_meal + fat_per_meal
     micros_per_meal = calories_per_meal - total_macros
 
