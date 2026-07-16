@@ -22,7 +22,7 @@ def generate_user_prompt(user_TDEE:float)->int:
 def get_user_info():
     while True:
         try:
-            user_weight = float(input("What is your weight in KG?"))
+            user_weight = float(input("What is your weight in KG? "))
             if user_weight < 1:
                 print("Please enter a valid weight")
             else:
@@ -31,7 +31,7 @@ def get_user_info():
             print(f"Input error! {v}")
     while True:
         try:
-            user_height = float(input("What is your height in CM?"))
+            user_height = float(input("What is your height in CM? "))
             if user_height < 1:
                 print("Please enter a valid height")
             else:
@@ -40,7 +40,7 @@ def get_user_info():
             print(f"Input error! {v}")
     while True:
          try:
-            user_age = int(input("What is your age?"))
+            user_age = int(input("What is your age? "))
             if user_age < 1:
                 print("Please enter a valid age")
             else:
@@ -48,14 +48,14 @@ def get_user_info():
          except ValueError as v:
             print(f"Input error! {v}")
     while True:
-        user_gender = input("What is your gender?")
+        user_gender = input("What is your gender? ")
         if user_gender == 'male' or user_gender == 'female':
             break
         else:
             print("Please enter a valid gender")
     while True:
         try:
-            activity_level = int(input("What is your activity level on a scale from 1 to 5?"))
+            activity_level = int(input("What is your activity level on a scale from 1 to 5? "))
             if activity_level < 1 or activity_level > 5:
                 print("please select a value between 1 and 5")
             else:
@@ -84,3 +84,16 @@ def finalize_plan(TDEE:float):
             print("Please select a valid option")
             finalize_plan(TDEE)
 
+def menu_for_no_TDEE():
+    user_selection = int(input("How many calories would you like to consume? "))
+    generate_meals(user_selection)
+    finalize_plan(user_selection)
+
+def generate_ascii_art():
+    print(r"""
+    __  ___           __   ______                           __            
+   /  |/  /__  ____ _/ /  / ____/__  ____  ___  _________ _/ /_____  _____
+  / /|_/ / _ \/ __ `/ /  / / __/ _ \/ __ \/ _ \/ ___/ __ `/ __/ __ \/ ___/
+ / /  / /  __/ /_/ / /  / /_/ /  __/ / / /  __/ /  / /_/ / /_/ /_/ / /    
+/_/  /_/\___/\__,_/_/   \____/\___/_/ /_/\___/_/   \__,_/\__/\____/_/     
+""")
