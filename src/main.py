@@ -4,8 +4,16 @@ from meal_generator import generate_meals
 import sys
 
 generate_ascii_art()
-generate_menu()
-user_selection = int(input())
+while True:
+    try:
+        generate_menu()
+        user_selection = int(input())
+        if user_selection == 1 or user_selection == 2:
+            break
+        else:
+            print("Please select a valid option")
+    except ValueError as v:
+        print("Please select a valid option")
 if user_selection == 1:
     weight, height, age, gender, activity_level = get_user_info()
     user_TDEE = generate_TDEE(weight, height, age, gender, activity_level)

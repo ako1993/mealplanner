@@ -12,7 +12,7 @@ press 2 and enter
 def generate_user_prompt(user_TDEE:float)->int:
     while True:
         print("Do you want to generate a meal plan based on your TDEE of ", user_TDEE, "?")
-        user_selection = int(input("Select 1 to generate plan and 2 to exit the program"))
+        user_selection = int(input("Select 1 to generate plan and 2 to exit the program "))
         if user_selection == 1 or user_selection == 2:
             break
         else:

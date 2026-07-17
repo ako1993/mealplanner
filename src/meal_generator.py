@@ -11,7 +11,7 @@ def generate_meals(calorie_allowance:int):
 
 
     print("--------------------------------------------------")
-    print(f"Your meal plan {calories_per_meal} calories per meal")
+    print(f"Your meal plan {round(calories_per_meal,2)} calories per meal")
     print("--------------------------------------------------")
     for i in range(1,4):
         print(f"------------------------Meal {i}--------------------------------------")
