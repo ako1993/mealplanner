@@ -8,6 +8,19 @@ To calculate your daily TDEE press 1 and enter
 To generate a custom meal plan based on your daily calories
 press 2 and enter
             ''')
+
+def get_preferred_UOM():
+    try:
+        while True:
+            print("What are your preferred units of measurement?")
+            user_selection = int(input("Select 1 and press enter for metric units\nSelect 2 and press enter for imperial units "))
+            if user_selection == 1 or user_selection == 2:
+                break
+            else:
+                print("Please make a valid selection")
+    except ValueError as v:
+        print("Please make a valid selection")
+    return user_selection
     
 def generate_user_prompt(user_TDEE:float)->int:
     while True:
@@ -32,6 +45,51 @@ def get_user_info():
     while True:
         try:
             user_height = float(input("What is your height in CM? "))
+            if user_height < 1:
+                print("Please enter a valid height")
+            else:
+                break
+        except ValueError as v:
+            print(f"Input error! {v}")
+    while True:
+         try:
+            user_age = int(input("What is your age? "))
+            if user_age < 1:
+                print("Please enter a valid age")
+            else:
+                break
+         except ValueError as v:
+            print(f"Input error! {v}")
+    while True:
+        user_gender = input("What is your gender? ")
+        if user_gender == 'male' or user_gender == 'female':
+            break
+        else:
+            print("Please enter a valid gender")
+    while True:
+        try:
+            activity_level = int(input("What is your activity level on a scale from 1 to 5? "))
+            if activity_level < 1 or activity_level > 5:
+                print("please select a value between 1 and 5")
+            else:
+                break
+        except ValueError as v:
+            print(f"Input error! {v}")
+    return user_weight, user_height, user_age, user_gender, activity_level
+
+def get_user_info_imperial():
+    while True:
+        try:
+            user_weight = float(input("What is your weight in lbs? "))
+            if user_weight < 1:
+                print("Please enter a valid weight")
+            else:
+                break
+        except ValueError as v:
+            print(f"Input error! {v}")
+    while True:
+        try:
+            user_height = float(input("What is your height in inches? "))
             if user_height < 1:
                 print("Please enter a valid height")
             else:
